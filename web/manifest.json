@@ -1,0 +1,24 @@
+{
+    "name": "CppCon Invitation",
+    "short_name": "CppCon Invite",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#2c3a61",
+    "theme_color": "#fdb834",
+    "description": "CppCon Invitation",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/circle-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
