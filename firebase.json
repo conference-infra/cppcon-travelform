@@ -10,7 +10,7 @@
       "region": "us-central1"
     },
     "rewrites": [ {
-      "source": "**",
+      "source": "visa",
       "destination": "/index.html"
     } ]
   }

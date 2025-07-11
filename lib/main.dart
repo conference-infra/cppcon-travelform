@@ -18,10 +18,9 @@ class TravelFormApp extends StatelessWidget {
     return MaterialApp(
       title: 'CppCon Travel Forms',
       theme: ThemeData.dark(useMaterial3: true),
-      initialRoute: '/visa',
       routes: {
         '/': (context) => const Invitation(),
-        '/visa': (context) => Visa(),
+        '/visa': (context) => const Visa(),
       },
     );
   }
