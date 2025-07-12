@@ -27,6 +27,7 @@ class Responses {
     required this.expires,
     required this.employer,
     required this.payee,
+    required this.attendee,
   });
 
   final String embassy;
@@ -38,6 +39,7 @@ class Responses {
   final String expires;
   final String employer;
   final String payee;
+  final String attendee;
 }
 
 class _VisaState extends State<Visa> {
@@ -52,6 +54,7 @@ class _VisaState extends State<Visa> {
   final issued = TextEditingController();
   final expires = TextEditingController();
   String? payee;
+  String? attendee;
   final employer = TextEditingController();
 
   void inputChanged() {
@@ -140,6 +143,19 @@ class _VisaState extends State<Visa> {
                           controller: employer,
                         )
                       : Container(),
+                  DropdownButtonFormField(
+                    items: const [
+                      DropdownMenuItem(value: "attendee", child: Text("attendee")),
+                      DropdownMenuItem(value: "speaker", child: Text("presenter")),
+                    ],
+                    onChanged: (item) => {
+                      setState(() {
+                        attendee = item!;
+                      })
+                    },
+                    value: attendee,
+                    decoration: const InputDecoration(labelText: "I am a CppCon"),
+                  ),
                 ]))),
         Card.outlined(
             child: Padding(
@@ -232,6 +248,7 @@ class _VisaState extends State<Visa> {
       expires: stringOrDefault(expires.text, "[EXPIRES]"),
       employer: stringOrDefault(employer.text, "[EMPLOYER]"),
       payee: stringOrDefault(payee, "myself"),
+      attendee: stringOrDefault(attendee, "attendee"),
     );
     var payeeSentence = switch (responses.payee) {
       "employer" =>
@@ -320,6 +337,7 @@ class _VisaState extends State<Visa> {
           pw.Text(
               "${responses.name} has registered to attend CppCon 2025 in order to participate in technical sessions, networking opportunities, and collaborative events with peers and industry leaders.\n\n$payeeSentence",
               textAlign: pw.TextAlign.justify),
+          responses.attendee == "speaker" ? pw.Text("As ${responses.name} is presenting at CppCon 2025 it is crucial that they be able to physically attend in order to effectively share their insights and engage with other attendees.\n\n", style: bold) : pw.Text(""),
           pw.Text(
               "We respectfully request your assistance in facilitating a visa for ${responses.name} to attend this important event. We look forward to welcoming them to the United States and to CppCon 2025.\n\n",
               textAlign: pw.TextAlign.justify),
